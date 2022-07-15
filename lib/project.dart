@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, import_of_legacy_library_into_null_safe
 
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -26,7 +24,7 @@ class _MyProjectsState extends State<MyProjects> {
 
   myProfile(lang, title, desc, url) {
     return SizedBox(
-      height: 215,
+      height: 230,
       width: MediaQuery.of(context).size.width * 0.98,
       child: Card(
         color: Color(0xff262628),
@@ -122,13 +120,13 @@ class _MyProjectsState extends State<MyProjects> {
             myProfile(
               'REACT',
               "ADHYAAY'21",
-              '- Website of HBTU, Kanpur annual cultural fest',
+              '- Website of HBTU, Kanpur annual cultural fest.',
               'https://www.adhyaay.co.in/',
             ),
             myProfile(
               'FLUTTER',
               'Crypto_Wallet',
-              '- A fake crypto wallet which uses API to fetch data of current rates of cryptos',
+              '- A fake crypto wallet which uses API to fetch data of current rates of cryptos.',
               'https://github.com/ayushsom1/crypto_wallet',
             ),
             myProfile(
