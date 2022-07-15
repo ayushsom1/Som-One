@@ -1,7 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, import_of_legacy_library_into_null_safe
+
+import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyProjects extends StatefulWidget {
   const MyProjects({super.key});
@@ -11,7 +14,17 @@ class MyProjects extends StatefulWidget {
 }
 
 class _MyProjectsState extends State<MyProjects> {
-  myProfile(lang, title, desc, star) {
+  launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  myProfile(lang, title, desc, url) {
     return SizedBox(
       height: 215,
       width: MediaQuery.of(context).size.width * 0.98,
@@ -62,16 +75,18 @@ class _MyProjectsState extends State<MyProjects> {
                   SizedBox(
                     width: 3,
                   ),
-                  Text(
-                    star,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
+                  // Text(
+                  //   star,
+                  //   style: TextStyle(
+                  //     fontSize: 18,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
                   Expanded(child: Container()),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        launchUrl(url);
+                      },
                       icon: Icon(
                         FontAwesomeIcons.github,
                         color: Colors.white,
@@ -98,12 +113,30 @@ class _MyProjectsState extends State<MyProjects> {
         alignment: Alignment.center,
         child: Column(
           children: [
-            myProfile('FLUTTER', 'SomOne', '- A Portfolio App', '10'),
-            myProfile('FLUTTER', 'SomOne', '- A Portfolio App', '10'),
-            myProfile('FLUTTER', 'SomOne', '- A Portfolio App', '10'),
-            myProfile('FLUTTER', 'SomOne', '- A Portfolio App', '10'),
-            myProfile('FLUTTER', 'SomOne', '- A Portfolio App', '10'),
-            myProfile('FLUTTER', 'SomOne', '- A Portfolio App', '10'),
+            myProfile(
+              'FLUTTER',
+              'SomOne',
+              '- A Portfolio App',
+              'https://github.com/ayushsom1/ayush_som',
+            ),
+            myProfile(
+              'REACT',
+              "ADHYAAY'21",
+              '- Website of HBTU, Kanpur annual cultural fest',
+              'https://www.adhyaay.co.in/',
+            ),
+            myProfile(
+              'FLUTTER',
+              'Crypto_Wallet',
+              '- A fake crypto wallet which uses API to fetch data of current rates of cryptos',
+              'https://github.com/ayushsom1/crypto_wallet',
+            ),
+            myProfile(
+              'ANGULAR-JS',
+              'To-Do',
+              '- A Basic To-Do App',
+              'https://github.com/ayushsom1/TODO-list-app',
+            ),
           ],
         ),
       )),
